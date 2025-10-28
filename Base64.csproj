@@ -7,13 +7,14 @@
 			so we have to explicitly build the NET60 and NET472 targets.
 		-->
 		<!--<TargetFrameworks>NET472</TargetFrameworks>-->
-		<TargetFrameworks>NET80</TargetFrameworks>
+		<TargetFrameworks>NET90</TargetFrameworks>
 		<RootNamespace>Westwind.Base64</RootNamespace>
 		<OutputType>Exe</OutputType>
 
 		<Title>West Wind Base64 Dotnet Tool</Title>
 		<Description>A small utility that lets you do command line base64 conversions. Also helpful for sending email with encoded text content that can bypass content filters.</Description>
 		<Summary>A small utility that lets you do command line base64 conversions for files and base64 strings and the clipboard (on Windows). Also helpful for sending email with encoded text content that can bypass content filters.</Summary>
+		<StartupObject>Program</StartupObject>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(TargetFramework)' == 'NET472'">
 		<!--<OutputPath>$(USERPROFILE)\Dropbox\utl</OutputPath>

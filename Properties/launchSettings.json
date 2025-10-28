@@ -1,8 +1,7 @@
 {
   "profiles": {
     "Base64_NoParms": {
-      "commandName": "Project",
-      "commandLineArgs": ""
+      "commandName": "Project"
     },
     "Base64_Output": {
       "commandName": "Project",
@@ -23,6 +22,10 @@
     "Base64_Input_B64_File": {
       "commandName": "Project",
       "commandLineArgs": "test.pdf.b64"
+    },
+    "Base64_StdIn": {
+      "commandName": "Project",
+      "commandLineArgs": "decodetext -i \"MjU=\""
     }
   }
 }

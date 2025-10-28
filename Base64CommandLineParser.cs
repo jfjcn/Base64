@@ -36,7 +36,8 @@ namespace Westwind.Base64
 
             if (Arguments.Length > 0 &&
                 !FirstParameter.Equals("encode", StringComparison.OrdinalIgnoreCase) &&
-                !FirstParameter.Equals("decode", StringComparison.OrdinalIgnoreCase))
+                !FirstParameter.Equals("decode", StringComparison.OrdinalIgnoreCase) &&
+                !FirstParameter.Equals("decodetext", StringComparison.OrdinalIgnoreCase))
             {
                 InputFile = Arguments[0];
                 FirstParameter = "encode";

@@ -57,7 +57,10 @@ namespace Westwind.Base64
             OutputFile = ParseStringParameterSwitch("-o");
             if (string.IsNullOrEmpty(OutputFile))
             {
-                if (Arguments.Length > 2 && !Arguments[2].StartsWith("-") && !Arguments[2].StartsWith("-"))
+                // Only use positional argument for output file if not using -i or -o switches
+                // (to avoid treating the value of -i as the output file)
+                bool hasInputSwitch = ParseParameterSwitch("-i");
+                if (Arguments.Length > 2 && !Arguments[2].StartsWith("-") && !hasInputSwitch)
                 {
                     OutputFile = Arguments[2];
                 }
@@ -70,19 +73,20 @@ namespace Westwind.Base64
             Help = ParseParameterSwitch("-h");
 
 
-            // Only .b64 file is passed 
+            // Only .b64 file is passed
             if (FirstParameter.Contains(".b64") && string.IsNullOrEmpty(OutputFile))
             {
                 InputFile = FirstParameter;
                 OutputFile = InputFile.Replace(".b64", "");
             }
-            // No output file, but .b64 passed 
+            // No output file, but .b64 passed
             else if (string.IsNullOrEmpty(OutputFile) && InputFile.Contains(".b64"))
             {
                 OutputFile = InputFile.Replace(".b64", "");
             }
-            // No output file and not to clipboard - assume .b64
-            else if (string.IsNullOrEmpty(OutputFile) && !string.IsNullOrEmpty(InputFile) && !SendToClipboard)
+            // No output file and not to clipboard - assume .b64 (but not for decodetext which can output to console)
+            else if (string.IsNullOrEmpty(OutputFile) && !string.IsNullOrEmpty(InputFile) && !SendToClipboard &&
+                     !FirstParameter.Equals("decodetext", StringComparison.OrdinalIgnoreCase))
             {
                 OutputFile = InputFile + ".b64";
             }

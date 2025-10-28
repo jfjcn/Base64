@@ -54,7 +54,6 @@ namespace Westwind.Base64
 
                 if (CommandLine.SendToTerminal)
                 {
-                    Console.WriteLine();
                     Console.WriteLine(Output);
                 }
             }
@@ -75,7 +74,16 @@ namespace Westwind.Base64
                 data = Base64Converter.Decode(fileText?.Trim());
             }
 
-            File.WriteAllBytes(CommandLine.OutputFile, data);
+            // If decodetext without output file, write to console
+            if (decodeText && string.IsNullOrEmpty(CommandLine.OutputFile))
+            {
+                string decodedText = System.Text.Encoding.UTF8.GetString(data);
+                Console.Write(decodedText);
+            }
+            else
+            {
+                File.WriteAllBytes(CommandLine.OutputFile, data);
+            }
         }
 
 

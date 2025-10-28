@@ -18,14 +18,6 @@ public class Program
         var cmdLine = new Base64CommandLineParser();
         cmdLine.Parse();
 
-        var version = Assembly.GetExecutingAssembly().GetName().Version;
-        var ver = version.Major + "." + version.Minor + (version.Build > 0 ? "." + version.Build : string.Empty);
-
-        string text = $"Base64 Encoder {ver}";
-        ColorConsole.WriteLine(text, ConsoleColor.Yellow);
-        ColorConsole.WriteLine(new string('-', text.Length), ConsoleColor.Yellow);
-        ColorConsole.WriteLine("(c) West Wind Technologies, 2023-" + DateTime.Now.Year, ConsoleColor.DarkGray);
-
         if (args == null || args.Length == 0 || args[0] == "HELP" || args[0] == "/?")
         {
 
@@ -71,12 +63,8 @@ decodetext -i JVBERi0xLjQKMSAwIG9iago8P== -o test_restored.pdf    // b64 text ->
         }
         else
         {
-            Console.WriteLine();
-
             var processor = new Base64Processor(cmdLine);
             processor.Process();
-
-            Console.WriteLine();
         }
     }
 }
